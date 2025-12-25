@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pintu Yadav | Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================= VARIABLES ================= */
+        :root {
+            /* Dark Theme (Default) */
+            --bg-color: #0a0a0a;
+            --text-color: #e0e0e0;
+            --text-secondary: #9ca3af;
+            --accent-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: #333;
+            --card-hover: rgba(255, 255, 255, 0.08);
+            --nav-border: rgba(255, 255, 255, 0.1);
+            --timeline-line: #333;
+            --btn-hover-bg: #222;
+        }
+
+        [data-theme="light"] {
+            /* Light Theme */
+            --bg-color: #f4f4f5;
+            --text-color: #18181b;
+            --text-secondary: #52525b;
+            --accent-color: #000000;
+            --card-bg: #ffffff;
+            --card-border: #d4d4d8;
+            --card-hover: #ffffff;
+            --nav-border: rgba(0, 0, 0, 0.1);
+            --timeline-line: #d4d4d8;
+            --btn-hover-bg: #e4e4e7;
+        }
+
+        /* ================= RESET ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo, .project-tech, .contact-label {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 15px;
+        }
+
+        a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        /* ================= NAV ================= */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 80px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--nav-border);
+            position: sticky;
+            top: 0;
+            background: var(--bg-color);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 40px; /* Increased space between Nav Links and Toggle Button */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px; /* === IMPROVED SPACING BETWEEN LINKS === */
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--card-border);
+            color: var(--text-color);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--btn-hover-bg);
+        }
+
+        /* ================= SECTIONS GLOBAL ================= */
+        section {
+            margin-bottom: 120px;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            opacity: 0.7;
+        }
+
+        /* ================= ABOUT ================= */
+        .about-text {
+            max-width: 700px;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .about-text ul { padding-left: 20px; }
+        .about-text li { margin-bottom: 10px; }
+
+        .cta { margin-top: 40px; }
+
+        .cta a {
+            display: inline-block;
+            padding: 14px 32px;
+            border: 1px solid var(--text-color);
+            font-weight: 600;
+            border-radius: 4px;
+        }
+
+        .cta a:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* ================= SKILLS (MARQUEE) ================= */
+        .skills-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .skills-container::before, .skills-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .skills-container::before { left: 0; background: linear-gradient(to right, var(--bg-color), transparent); }
+        .skills-container::after { right: 0; background: linear-gradient(to left, var(--bg-color), transparent); }
+
+        .skills-track {
+            display: flex;
+            gap: 50px;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+        }
+
+        .skills-track:hover { animation-play-state: paused; }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+        }
+
+        .skill-item img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .skill-item span {
+            font-size: 0.8rem;
+            font-family: 'Fira Code', monospace;
+            color: var(--text-secondary);
+        }
+
+        .skill-item:hover img { transform: scale(1.2); }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 25px)); }
+        }
+
+        /* ================= EXPERIENCE ================= */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid var(--timeline-line);
+        }
+
+        .exp-card {
+            position: relative;
+            margin-bottom: 40px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 25px;
+            border-radius: 8px;
+            transition: 0.3s ease;
+        }
+
+        .exp-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+        }
+
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 25px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 4px solid var(--bg-color);
+        }
+
+        .exp-role { font-size: 1.2rem; font-weight: 700; color: var(--text-color); }
+        .exp-company { font-family: 'Fira Code', monospace; color: var(--accent-color); font-size: 0.95rem; }
+        .exp-date { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; display: block; }
+        .exp-desc { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* ================= PROJECTS ================= */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            border: 1px solid var(--card-border);
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--text-secondary);
+            background: var(--card-hover);
+            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.2);
+        }
+
+        .project-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; color: var(--text-color); }
+        .project-tech { font-size: 0.8rem; color: var(--accent-color); margin-bottom: 15px; }
+        .project-desc { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 25px; line-height: 1.6; }
+        .project-links a { font-size: 0.9rem; font-weight: 600; margin-right: 15px; }
+
+        /* ================= CONTACT (REDESIGNED) ================= */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Larger Cards */
+            gap: 20px;
+        }
+
+        /* The Card Link Container */
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 25px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: var(--card-hover);
+            border-color: var(--text-secondary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Icon Circle */
+        .icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(128, 128, 128, 0.1);
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .contact-card:hover .icon-box {
+            background: var(--text-color);
+        }
+
+        .icon-box img {
+            width: 28px;
+            height: 28px;
+            transition: 0.3s;
+        }
+
+        /* Invert icon color on hover so it stays visible against white background */
+        .contact-card:hover .icon-box img {
+            filter: grayscale(1) invert(1) brightness(10);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .contact-value {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Dark Mode Icon Handling (Default State) */
+        [data-theme="dark"] .icon-box img {
+            /* Keep colored icons colored, but invert black icons (like email) */
+        }
+        
+        [data-theme="dark"] .icon-box img[src*="email"] {
+            filter: brightness(0) invert(1);
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            margin-top: 100px;
+            padding-top: 30px;
+            border-top: 1px solid var(--card-border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            
+            nav {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+
+            .nav-right {
+                width: 100%;
+                justify-content: space-between;
+                flex-direction: row-reverse; /* Put toggle on right, links on left if wrapping */
+            }
+            
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px; /* Smaller gap on mobile to fit screen */
+            }
+
+            .timeline { padding-left: 20px; }
+            .exp-card::before { left: -26px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <nav>
+            <div class="logo">pintu.dev</div>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#about">about</a>
+                    <a href="#skills">skills</a>
+                    <a href="#experience">experience</a>
+                    <a href="#projects">projects</a>
+                    <a href="#contact">contact</a>
+                </div>
+                <button class="theme-toggle" id="theme-btn" aria-label="Toggle Dark Mode">
+                    ☀
+                </button>
+            </div>
+        </nav>
+
+        <section id="about">
+            <h1>Hi 👋, I'm Pintu</h1>
+            <h2>Software Developer | Web & AI/ML Enthusiast</h2>
+
+            <div class="about-text">
+                <p style="margin-bottom: 15px;">
+                    I craft robust digital solutions and explore the frontiers of Artificial Intelligence.
+                </p>
+                <ul>
+                    <li>🎓 Final-year Computer Science student</li>
+                    <li>💻 Full-stack development & AI/ML exploration</li>
+                    <li>🌐 Strong foundation in modern web & backend</li>
+                    <li>🚀 Building real-world, impact-driven projects</li>
+                </ul>
+            </div>
+
+            <div class="cta">
+                <a href="resume.pdf" target="_blank">Download CV</a>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h3>// tech stack</h3>
+            <div class="skills-container">
+                <div class="skills-track">
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"><span>Python</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"><span>JS</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"><span>TS</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"><span>React</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"><span>Next.js</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"><span>Node</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"><span>Mongo</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"><span>C++</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"><span>Java</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"><span>TensorFlow</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"><span>Docker</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"><span>Git</span></div>
+                    
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"><span>Python</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"><span>JS</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"><span>TS</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"><span>React</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"><span>Next.js</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"><span>Node</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"><span>Mongo</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"><span>C++</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"><span>Java</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"><span>TensorFlow</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"><span>Docker</span></div>
+                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"><span>Git</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h3>// experience</h3>
+            <div class="timeline">
+                
+                <div class="exp-card">
+                    <div class="exp-role">Software Engineer Intern</div>
+                    <span class="exp-company">Tech Solutions Inc.</span>
+                    <span class="exp-date">Jan 2024 - Present</span>
+                    <p class="exp-desc">
+                        Developing scalable backend APIs using Node.js and optimizing database queries. Collaborating with cross-functional teams to deploy features.
+                    </p>
+                </div>
+
+                <div class="exp-card">
+                    <div class="exp-role">Web Developer Freelancer</div>
+                    <span class="exp-company">Upwork / Remote</span>
+                    <span class="exp-date">Jun 2023 - Dec 2023</span>
+                    <p class="exp-desc">
+                        Built responsive websites for local businesses using React and Tailwind CSS. Implemented SEO best practices increasing client traffic.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="projects">
+            <h3>// featured projects</h3>
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-title">Movie Recommendation System</div>
+                        <div class="project-tech">Python · ML · Scikit-learn</div>
+                        <div class="project-desc">
+                            A smart content-based recommendation engine utilizing cosine similarity to suggest movies based on user viewing history.
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="#">Source Code →</a>
+                        <a href="#">Live Demo ↗</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-title">IT Support Automation</div>
+                        <div class="project-tech">Python · Shell · Automation</div>
+                        <div class="project-desc">
+                            Automated scripts to handle routine system checks, disk cleanup, and log rotation, reducing manual IT maintenance time by 40%.
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="#">Source Code →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-title">E-Commerce API</div>
+                        <div class="project-tech">Node.js · Express · MongoDB</div>
+                        <div class="project-desc">
+                            RESTful API featuring JWT authentication, product CRUD operations, and payment gateway integration.
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="#">Source Code →</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact">
+            <h3>// let's connect</h3>
+            <div class="contact-grid">
+
+                <a href="https://github.com/pintuyadav5468" target="_blank" class="contact-card">
+                    <div class="icon-box">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-label">GitHub</span>
+                        <span class="contact-value">@pintuyadav5468</span>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/pintu-yadav-561659219/" target="_blank" class="contact-card">
+                    <div class="icon-box">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-label">LinkedIn</span>
+                        <span class="contact-value">in/pintu-yadav</span>
+                    </div>
+                </a>
+
+                <a href="https://twitter.com" target="_blank" class="contact-card">
+                    <div class="icon-box">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg" alt="Twitter">
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-label">Twitter</span>
+                        <span class="contact-value">@pintuyadav</span>
+                    </div>
+                </a>
+
+                <a href="mailto:pintuyadav13624@gmail.com" class="contact-card">
+                    <div class="icon-box">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/email.png" alt="Email">
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">Send a Mail</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <footer>
+            © 2025 Pintu Yadav · Built with ❤️ & Code
+        </footer>
+
+    </div>
+
+    <script>
+        const themeBtn = document.getElementById('theme-btn');
+        const htmlElement = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateIcon(savedTheme);
+
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+
+        function updateIcon(theme) {
+            themeBtn.textContent = theme === 'dark' ? '☀' : '🌙';
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
