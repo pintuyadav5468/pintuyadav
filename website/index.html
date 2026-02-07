@@ -1,46 +1,51 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pintu Yadav | Portfolio</title>
+    <title>Pintu | Full-Stack Developer & DevOps Engineer</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
 
     <style>
         /* ================= VARIABLES ================= */
         :root {
-            /* Dark Theme (Default) */
-            --bg-color: #0a0a0a;
-            --text-color: #e0e0e0;
-            --text-secondary: #9ca3af;
-            --accent-color: #ffffff;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: #333;
-            --card-hover: rgba(255, 255, 255, 0.08);
-            --nav-border: rgba(255, 255, 255, 0.1);
-            --timeline-line: #333;
-            --btn-hover-bg: #222;
-        }
-
-        [data-theme="light"] {
-            /* Light Theme */
-            --bg-color: #f4f4f5;
-            --text-color: #18181b;
-            --text-secondary: #52525b;
-            --accent-color: #000000;
+            --bg-color: #ffffff;
+            --text-color: #0f1419;
+            --text-secondary: #536471;
+            --accent-color: #1d9bf0;
             --card-bg: #ffffff;
-            --card-border: #d4d4d8;
-            --card-hover: #ffffff;
-            --nav-border: rgba(0, 0, 0, 0.1);
-            --timeline-line: #d4d4d8;
-            --btn-hover-bg: #e4e4e7;
+            --card-border: #eff3f4;
+            --card-hover: #f7f9f9;
+            --nav-border: #eff3f4;
+            --timeline-line: #cfd9de;
+            --btn-hover-bg: #f7f9f9;
+            --gradient-accent: linear-gradient(135deg, #1d9bf0 0%, #0084b4 100%);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
 
-        /* ================= RESET ================= */
+        [data-theme="dark"] {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --text-secondary: #71767b;
+            --accent-color: #1d9bf0;
+            --card-bg: #16181c;
+            --card-border: #2f3336;
+            --card-hover: #1c1f23;
+            --nav-border: #2f3336;
+            --timeline-line: #2f3336;
+            --btn-hover-bg: #181818;
+            --gradient-accent: linear-gradient(135deg, #1d9bf0 0%, #0084b4 100%);
+            --shadow-sm: 0 2px 8px rgba(255, 255, 255, 0.05);
+            --shadow-md: 0 8px 24px rgba(255, 255, 255, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -52,7 +57,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
@@ -61,7 +66,10 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .logo, .project-tech, .contact-label {
+        h1,
+        h2,
+        h3,
+        .logo {
             font-family: 'Fira Code', monospace;
         }
 
@@ -74,7 +82,7 @@
         a {
             color: var(--text-color);
             text-decoration: none;
-            transition: opacity 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         /* ================= NAV ================= */
@@ -90,119 +98,146 @@
             top: 0;
             background: var(--bg-color);
             z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
         .logo {
             font-size: 1.4rem;
             font-weight: 700;
             letter-spacing: -1px;
+            cursor: pointer;
+            color: var(--text-color);
         }
 
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 40px; /* Increased space between Nav Links and Toggle Button */
+            gap: 40px;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px; /* === IMPROVED SPACING BETWEEN LINKS === */
+            gap: 40px;
         }
 
         .nav-links a {
             font-size: 0.95rem;
             font-weight: 500;
-            opacity: 0.8;
-            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            transition: color 0.2s ease;
         }
 
         .nav-links a:hover {
-            opacity: 1;
             color: var(--accent-color);
         }
 
         .theme-toggle {
-            background: none;
+            background: transparent;
             border: 1px solid var(--card-border);
             color: var(--text-color);
-            padding: 8px 12px;
-            border-radius: 8px;
+            padding: 8px;
+            border-radius: 50%;
             cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
         }
 
         .theme-toggle:hover {
-            background: var(--btn-hover-bg);
+            background: var(--card-hover);
         }
 
-        /* ================= SECTIONS GLOBAL ================= */
+        /* ================= SECTIONS - CENTERED ================= */
         section {
-            margin-bottom: 120px;
-            animation: fadeIn 0.8s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            margin-bottom: 100px;
+            text-align: center;
         }
 
         h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin-bottom: 15px;
-            color: var(--accent-color);
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            color: var(--text-color);
         }
 
         h2 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
             margin-bottom: 30px;
             font-weight: 400;
         }
 
         h3 {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             color: var(--text-secondary);
-            margin-bottom: 40px;
-            opacity: 0.7;
+            margin-bottom: 30px;
         }
 
-        /* ================= ABOUT ================= */
+        /* ================= ABOUT - CENTERED ================= */
         .about-text {
             max-width: 700px;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
+            margin: 0 auto 30px;
         }
 
-        .about-text ul { padding-left: 20px; }
-        .about-text li { margin-bottom: 10px; }
+        .about-text ul {
+            padding-left: 0;
+            list-style: none;
+            text-align: center;
+        }
 
-        .cta { margin-top: 40px; }
+        .about-text li {
+            margin-bottom: 12px;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .cta {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
         .cta a {
-            display: inline-block;
-            padding: 14px 32px;
-            border: 1px solid var(--text-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: 1px solid var(--card-border);
             font-weight: 600;
-            border-radius: 4px;
+            border-radius: 24px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+
+        .cta a img {
+            width: 18px;
+            height: 18px;
         }
 
         .cta a:hover {
-            background: var(--text-color);
-            color: var(--bg-color);
+            background: var(--card-hover);
+            border-color: var(--accent-color);
         }
 
-        /* ================= SKILLS (MARQUEE) ================= */
+        /* ================= SKILLS ================= */
         .skills-container {
             width: 100%;
             overflow: hidden;
             position: relative;
+            padding: 20px 0;
         }
-        
-        .skills-container::before, .skills-container::after {
+
+        .skills-container::before,
+        .skills-container::after {
             content: "";
             position: absolute;
             top: 0;
@@ -211,9 +246,16 @@
             z-index: 2;
             pointer-events: none;
         }
-        
-        .skills-container::before { left: 0; background: linear-gradient(to right, var(--bg-color), transparent); }
-        .skills-container::after { right: 0; background: linear-gradient(to left, var(--bg-color), transparent); }
+
+        .skills-container::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-color), transparent);
+        }
+
+        .skills-container::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-color), transparent);
+        }
 
         .skills-track {
             display: flex;
@@ -222,199 +264,321 @@
             animation: scroll 30s linear infinite;
         }
 
-        .skills-track:hover { animation-play-state: paused; }
+        .skills-track:hover {
+            animation-play-state: paused;
+        }
 
         .skill-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-width: 80px;
         }
 
         .skill-item img {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             margin-bottom: 10px;
-            transition: transform 0.3s;
+            transition: transform 0.3s ease;
         }
-        
+
+        .skill-item:hover img {
+            transform: scale(1.2);
+        }
+
         .skill-item span {
             font-size: 0.8rem;
-            font-family: 'Fira Code', monospace;
             color: var(--text-secondary);
         }
 
-        .skill-item:hover img { transform: scale(1.2); }
-
         @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-50% - 25px)); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-50% - 25px));
+            }
         }
 
-        /* ================= EXPERIENCE ================= */
+        /* ================= EXPERIENCE - CENTERED ================= */
         .timeline {
             position: relative;
+            max-width: 800px;
+            margin: 0 auto;
             padding-left: 30px;
             border-left: 2px solid var(--timeline-line);
+            text-align: left;
         }
 
         .exp-card {
             position: relative;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            padding: 25px;
-            border-radius: 8px;
-            transition: 0.3s ease;
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
         }
 
         .exp-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+            background: var(--card-hover);
+            border-color: var(--accent-color);
         }
 
         .exp-card::before {
             content: '';
             position: absolute;
             left: -36px;
-            top: 25px;
+            top: 20px;
             width: 10px;
             height: 10px;
             border-radius: 50%;
             background: var(--accent-color);
-            border: 4px solid var(--bg-color);
+            border: 3px solid var(--bg-color);
         }
 
-        .exp-role { font-size: 1.2rem; font-weight: 700; color: var(--text-color); }
-        .exp-company { font-family: 'Fira Code', monospace; color: var(--accent-color); font-size: 0.95rem; }
-        .exp-date { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; display: block; }
-        .exp-desc { color: var(--text-secondary); font-size: 0.95rem; }
+        .exp-role {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
 
-        /* ================= PROJECTS ================= */
+        .exp-company {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .exp-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .exp-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .company-logo {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ================= PROJECTS - CENTERED ================= */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .project-card {
             border: 1px solid var(--card-border);
-            padding: 30px;
+            padding: 24px;
             background: var(--card-bg);
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            border-radius: 12px;
+            transition: all 0.2s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            text-align: left;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--text-secondary);
             background: var(--card-hover);
-            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.2);
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-sm);
         }
 
-        .project-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; color: var(--text-color); }
-        .project-tech { font-size: 0.8rem; color: var(--accent-color); margin-bottom: 15px; }
-        .project-desc { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 25px; line-height: 1.6; }
-        .project-links a { font-size: 0.9rem; font-weight: 600; margin-right: 15px; }
-
-        /* ================= CONTACT (REDESIGNED) ================= */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Larger Cards */
-            gap: 20px;
-        }
-
-        /* The Card Link Container */
-        .contact-card {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 25px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            text-decoration: none;
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
             color: var(--text-color);
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            background: var(--card-hover);
-            border-color: var(--text-secondary);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        /* Icon Circle */
-        .icon-box {
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: rgba(128, 128, 128, 0.1);
-            border-radius: 50%;
-            transition: 0.3s;
+            gap: 8px;
         }
 
-        .contact-card:hover .icon-box {
-            background: var(--text-color);
-        }
-
-        .icon-box img {
-            width: 28px;
-            height: 28px;
-            transition: 0.3s;
-        }
-
-        /* Invert icon color on hover so it stays visible against white background */
-        .contact-card:hover .icon-box img {
-            filter: grayscale(1) invert(1) brightness(10);
-        }
-
-        .contact-info {
+        .project-tech {
+            margin-bottom: 12px;
             display: flex;
-            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .contact-label {
-            font-size: 0.8rem;
+        .tech-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
             color: var(--text-secondary);
-            margin-bottom: 4px;
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
 
-        .contact-value {
-            font-size: 1rem;
+        .project-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .project-links a {
+            font-size: 0.85rem;
+            color: var(--accent-color);
             font-weight: 600;
         }
 
-        /* Dark Mode Icon Handling (Default State) */
-        [data-theme="dark"] .icon-box img {
-            /* Keep colored icons colored, but invert black icons (like email) */
+        .project-links a:hover {
+            text-decoration: underline;
         }
-        
-        [data-theme="dark"] .icon-box img[src*="email"] {
-            filter: brightness(0) invert(1);
+
+        .project-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: var(--card-hover);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .project-status.live {
+            background: rgba(29, 155, 240, 0.1);
+            border-color: rgba(29, 155, 240, 0.3);
+            color: var(--accent-color);
+        }
+
+        /* ================= CERTIFICATIONS - CENTERED ================= */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cert-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 16px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .cert-item:hover {
+            background: var(--card-hover);
+            border-color: var(--accent-color);
+        }
+
+        .cert-icon {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+        }
+
+        .cert-info {
+            flex: 1;
+        }
+
+        .cert-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .cert-issuer {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* ================= CONTACT - LOGO ONLY - CENTERED ================= */
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-logos {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .contact-logo-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .contact-logo-link:hover {
+            background: var(--card-hover);
+            border-color: var(--accent-color);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-logo-link img {
+            width: 28px;
+            height: 28px;
         }
 
         /* ================= FOOTER ================= */
         footer {
-            margin-top: 100px;
+            margin-top: 80px;
             padding-top: 30px;
             border-top: 1px solid var(--card-border);
             text-align: center;
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+        }
+
+        /* ================= REVEAL ANIMATION ================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ================= RESPONSIVE ================= */
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            
+            h1 {
+                font-size: 2.2rem;
+            }
+
             nav {
                 flex-direction: column;
                 gap: 20px;
@@ -424,22 +588,40 @@
             .nav-right {
                 width: 100%;
                 justify-content: space-between;
-                flex-direction: row-reverse; /* Put toggle on right, links on left if wrapping */
-            }
-            
-            .nav-links {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px; /* Smaller gap on mobile to fit screen */
             }
 
-            .timeline { padding-left: 20px; }
-            .exp-card::before { left: -26px; }
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .timeline {
+                padding-left: 20px;
+            }
+
+            .exp-card::before {
+                left: -26px;
+            }
+
+            .contact-logos {
+                gap: 30px;
+            }
+
+            .contact-logo-link {
+                width: 50px;
+                height: 50px;
+            }
+
+            .contact-logo-link img {
+                width: 24px;
+                height: 24px;
+            }
         }
     </style>
 </head>
 
 <body>
+
     <div class="container">
 
         <nav>
@@ -450,218 +632,487 @@
                     <a href="#skills">skills</a>
                     <a href="#experience">experience</a>
                     <a href="#projects">projects</a>
+                    <a href="#certifications">certifications</a>
                     <a href="#contact">contact</a>
                 </div>
-                <button class="theme-toggle" id="theme-btn" aria-label="Toggle Dark Mode">
-                    ☀
-                </button>
+                <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme">🌙</button>
             </div>
         </nav>
 
-        <section id="about">
+        <section id="about" class="reveal">
             <h1>Hi 👋, I'm Pintu</h1>
-            <h2>Software Developer | Web & AI/ML Enthusiast</h2>
+            <h2>Full-Stack Engineer | DevOps Enthusiast | AI/ML Explorer</h2>
 
             <div class="about-text">
-                <p style="margin-bottom: 15px;">
-                    I craft robust digital solutions and explore the frontiers of Artificial Intelligence.
-                </p>
                 <ul>
-                    <li>🎓 Final-year Computer Science student</li>
-                    <li>💻 Full-stack development & AI/ML exploration</li>
-                    <li>🌐 Strong foundation in modern web & backend</li>
-                    <li>🚀 Building real-world, impact-driven projects</li>
+                    <li>🎓 Final-year Computer Science (CGPA: 8.3/10)</li>
+                    <li>💻 MERN · TypeScript · REST APIs</li>
+                    <li>☁️ AWS · GCP · Docker · Kubernetes · CI/CD</li>
+                    <li>🤖 PyTorch · TensorFlow · ML</li>
+                    <li>🚀 Production-ready projects</li>
                 </ul>
             </div>
 
             <div class="cta">
-                <a href="resume.pdf" target="_blank">Download CV</a>
+                <a href="https://github.com/pintuyadav5468" target="_blank">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                        alt="GitHub">
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/pintu-yadav-561659219/" target="_blank">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+                        alt="LinkedIn">
+                    LinkedIn
+                </a>
+                <a href="mailto:pintuyadav13624@gmail.com">
+                    📧 Email
+                </a>
             </div>
         </section>
 
-        <section id="skills">
+        <section id="skills" class="reveal">
             <h3>// tech stack</h3>
             <div class="skills-container">
                 <div class="skills-track">
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"><span>Python</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"><span>JS</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"><span>TS</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"><span>React</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"><span>Next.js</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"><span>Node</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"><span>Mongo</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"><span>C++</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"><span>Java</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"><span>TensorFlow</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"><span>Docker</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"><span>Git</span></div>
-                    
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"><span>Python</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"><span>JS</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"><span>TS</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"><span>React</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"><span>Next.js</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"><span>Node</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"><span>Mongo</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"><span>C++</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"><span>Java</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"><span>TensorFlow</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"><span>Docker</span></div>
-                    <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"><span>Git</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                            alt="Python"><span>Python</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                            alt="JavaScript"><span>JS</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                            alt="TypeScript"><span>TS</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                            alt="React"><span>React</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                            alt="Next.js"><span>Next.js</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                            alt="Node.js"><span>Node</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                            alt="MongoDB"><span>Mongo</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                            alt="PostgreSQL"><span>PostgreSQL</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                            alt="Docker"><span>Docker</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
+                            alt="Kubernetes"><span>K8s</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                            alt="AWS"><span>AWS</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
+                            alt="GCP"><span>GCP</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                            alt="Git"><span>Git</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
+                            alt="Linux"><span>Linux</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
+                            alt="PyTorch"><span>PyTorch</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+                            alt="TensorFlow"><span>TensorFlow</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
+                            alt="Flask"><span>Flask</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg"
+                            alt="Bash"><span>Bash</span></div>
+
+                    <!-- Duplicates -->
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                            alt="Python"><span>Python</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                            alt="JavaScript"><span>JS</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                            alt="TypeScript"><span>TS</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                            alt="React"><span>React</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                            alt="Next.js"><span>Next.js</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                            alt="Node.js"><span>Node</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                            alt="MongoDB"><span>Mongo</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                            alt="PostgreSQL"><span>PostgreSQL</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                            alt="Docker"><span>Docker</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
+                            alt="Kubernetes"><span>K8s</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                            alt="AWS"><span>AWS</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
+                            alt="GCP"><span>GCP</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                            alt="Git"><span>Git</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
+                            alt="Linux"><span>Linux</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
+                            alt="PyTorch"><span>PyTorch</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+                            alt="TensorFlow"><span>TensorFlow</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
+                            alt="Flask"><span>Flask</span></div>
+                    <div class="skill-item"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg"
+                            alt="Bash"><span>Bash</span></div>
                 </div>
             </div>
         </section>
 
-        <section id="experience">
+        <section id="experience" class="reveal">
             <h3>// experience</h3>
             <div class="timeline">
-                
+
                 <div class="exp-card">
-                    <div class="exp-role">Software Engineer Intern</div>
-                    <span class="exp-company">Tech Solutions Inc.</span>
-                    <span class="exp-date">Jan 2024 - Present</span>
-                    <p class="exp-desc">
-                        Developing scalable backend APIs using Node.js and optimizing database queries. Collaborating with cross-functional teams to deploy features.
-                    </p>
+                    <div class="exp-role">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+                            class="company-logo" alt="Google">
+                        Generative AI Intern
+                    </div>
+                    <div class="exp-company">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
+                            style="width: 16px; height: 16px;" alt="GCP">
+                        Google Cloud — L4G Program
+                    </div>
+                    <div class="exp-date">
+                        📅 Jun 2025 - Sep 2025
+                    </div>
+                    <div class="exp-desc">
+                        Cloud-based AI/ML projects • Debugging & documentation • Agile collaboration • Scalable
+                        deployments
+                    </div>
                 </div>
 
                 <div class="exp-card">
-                    <div class="exp-role">Web Developer Freelancer</div>
-                    <span class="exp-company">Upwork / Remote</span>
-                    <span class="exp-date">Jun 2023 - Dec 2023</span>
-                    <p class="exp-desc">
-                        Built responsive websites for local businesses using React and Tailwind CSS. Implemented SEO best practices increasing client traffic.
-                    </p>
+                    <div class="exp-role">
+                        💻 Web Development Intern
+                    </div>
+                    <div class="exp-company">
+                        Motioncut — Remote
+                    </div>
+                    <div class="exp-date">
+                        📅 Oct 2023 - Nov 2023
+                    </div>
+                    <div class="exp-desc">
+                        Responsive UIs (HTML5, CSS3, JS) • Git workflows • Cross-browser compatibility • Performance
+                        optimization
+                    </div>
                 </div>
 
             </div>
         </section>
 
-        <section id="projects">
-            <h3>// featured projects</h3>
+        <section id="projects" class="reveal">
+            <h3>// projects</h3>
             <div class="projects-grid">
 
                 <div class="project-card">
                     <div>
-                        <div class="project-title">Movie Recommendation System</div>
-                        <div class="project-tech">Python · ML · Scikit-learn</div>
+                        <span class="project-status live">● Live</span>
+                        <div class="project-title">
+                            🌐 Anant Nepal
+                        </div>
+                        <div class="project-tech">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                                class="tech-icon" alt="HTML5">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                                class="tech-icon" alt="CSS3">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                class="tech-icon" alt="JavaScript">
+                        </div>
                         <div class="project-desc">
-                            A smart content-based recommendation engine utilizing cosine similarity to suggest movies based on user viewing history.
+                            Production organizational website • Modern UI/UX • Mobile-first design • Optimized
+                            performance
                         </div>
                     </div>
                     <div class="project-links">
-                        <a href="#">Source Code →</a>
-                        <a href="#">Live Demo ↗</a>
+                        <a href="https://anantnepal.org.np" target="_blank">🔗 Live</a>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div>
-                        <div class="project-title">IT Support Automation</div>
-                        <div class="project-tech">Python · Shell · Automation</div>
+                        <span class="project-status live">● Live</span>
+                        <div class="project-title">
+                            🎮 PokéBrowse
+                        </div>
+                        <div class="project-tech">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                class="tech-icon" alt="JavaScript">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                                class="tech-icon" alt="HTML5">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                                class="tech-icon" alt="CSS3">
+                        </div>
                         <div class="project-desc">
-                            Automated scripts to handle routine system checks, disk cleanup, and log rotation, reducing manual IT maintenance time by 40%.
+                            REST API integration • Async JS (fetch, promises) • Dynamic rendering • Optimized API
+                            handling
                         </div>
                     </div>
                     <div class="project-links">
-                        <a href="#">Source Code →</a>
+                        <a href="https://github.com/pintuyadav5468" target="_blank">💻 Code</a>
+                        <a href="https://pokebrowse.netlify.app" target="_blank">🔗 Live</a>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div>
-                        <div class="project-title">E-Commerce API</div>
-                        <div class="project-tech">Node.js · Express · MongoDB</div>
+                        <span class="project-status live">● Live</span>
+                        <div class="project-title">
+                            ✅ TaskTrackr
+                        </div>
+                        <div class="project-tech">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                class="tech-icon" alt="JavaScript">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                                class="tech-icon" alt="HTML5">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                                class="tech-icon" alt="CSS3">
+                        </div>
                         <div class="project-desc">
-                            RESTful API featuring JWT authentication, product CRUD operations, and payment gateway integration.
+                            Full CRUD • Local Storage API • Task filtering • Status tracking • State management
                         </div>
                     </div>
                     <div class="project-links">
-                        <a href="#">Source Code →</a>
+                        <a href="https://github.com/pintuyadav5468" target="_blank">💻 Code</a>
+                        <a href="https://tasktrackr-pintu.netlify.app" target="_blank">🔗 Live</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <span class="project-status live">● Live</span>
+                        <div class="project-title">
+                            🍛 Himalayan Spice
+                        </div>
+                        <div class="project-tech">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                                class="tech-icon" alt="HTML5">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                                class="tech-icon" alt="CSS3">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                class="tech-icon" alt="JavaScript">
+                        </div>
+                        <div class="project-desc">
+                            Restaurant landing page • Modern design • Smooth animations • Responsive layout
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/pintuyadav5468" target="_blank">💻 Code</a>
+                        <a href="https://himalayan-spice.netlify.app" target="_blank">🔗 Live</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <span class="project-status">⚙️ In Dev</span>
+                        <div class="project-title">
+                            🐳 DevOps Pipeline
+                        </div>
+                        <div class="project-tech">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                                class="tech-icon" alt="Docker">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
+                                class="tech-icon" alt="Kubernetes">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                                class="tech-icon" alt="GitHub">
+                        </div>
+                        <div class="project-desc">
+                            Flask microservice • K8s orchestration • CI/CD automation • Vulnerability scanning
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/pintuyadav5468" target="_blank">💻 Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <span class="project-status">⚙️ In Dev</span>
+                        <div class="project-title">
+                            🚀 MERN App
+                        </div>
+                        <div class="project-tech">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                                class="tech-icon" alt="React">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                                class="tech-icon" alt="TypeScript">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                                class="tech-icon" alt="Node.js">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                                class="tech-icon" alt="MongoDB">
+                        </div>
+                        <div class="project-desc">
+                            TypeScript • RESTful API • Express.js • Prisma ORM • Responsive React frontend
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/pintuyadav5468" target="_blank">💻 Code</a>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <section id="contact">
-            <h3>// let's connect</h3>
-            <div class="contact-grid">
+        <section id="certifications" class="reveal">
+            <h3>// certifications</h3>
+            <div class="cert-grid">
+                <div class="cert-item">
+                    <img src="https://cdn.worldvectorlogo.com/logos/cisco-2.svg" class="cert-icon" alt="Cisco">
+                    <div class="cert-info">
+                        <div class="cert-name">CCNA</div>
+                        <div class="cert-issuer">Cisco (2025)</div>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                        class="cert-icon" alt="AWS">
+                    <div class="cert-info">
+                        <div class="cert-name">AWS Cloud Foundations</div>
+                        <div class="cert-issuer">Amazon Web Services</div>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <img src="https://cdn.worldvectorlogo.com/logos/oracle-6.svg" class="cert-icon" alt="Oracle">
+                    <div class="cert-info">
+                        <div class="cert-name">OCI AI Foundations</div>
+                        <div class="cert-issuer">Oracle</div>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                        class="cert-icon" alt="AWS">
+                    <div class="cert-info">
+                        <div class="cert-name">ML Summer School</div>
+                        <div class="cert-issuer">Amazon (2025)</div>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <img src="https://cdn.worldvectorlogo.com/logos/mckinsey-company.svg" class="cert-icon"
+                        alt="McKinsey">
+                    <div class="cert-info">
+                        <div class="cert-name">McKinsey Forward</div>
+                        <div class="cert-issuer">McKinsey & Company</div>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+                        class="cert-icon" alt="Google">
+                    <div class="cert-info">
+                        <div class="cert-name">L4G Program</div>
+                        <div class="cert-issuer">Google Cloud (2025)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <a href="https://github.com/pintuyadav5468" target="_blank" class="contact-card">
-                    <div class="icon-box">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
-                    </div>
-                    <div class="contact-info">
-                        <span class="contact-label">GitHub</span>
-                        <span class="contact-value">@pintuyadav5468</span>
-                    </div>
+        <section id="contact" class="reveal contact-section">
+            <h3>// connect</h3>
+            <div class="contact-logos">
+                <a href="https://github.com/pintuyadav5468" target="_blank" class="contact-logo-link"
+                    aria-label="GitHub">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                        alt="GitHub">
                 </a>
-
-                <a href="https://www.linkedin.com/in/pintu-yadav-561659219/" target="_blank" class="contact-card">
-                    <div class="icon-box">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">
-                    </div>
-                    <div class="contact-info">
-                        <span class="contact-label">LinkedIn</span>
-                        <span class="contact-value">in/pintu-yadav</span>
-                    </div>
+                <a href="https://www.linkedin.com/in/pintu-yadav-561659219/" target="_blank" class="contact-logo-link"
+                    aria-label="LinkedIn">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+                        alt="LinkedIn">
                 </a>
-
-                <a href="https://twitter.com" target="_blank" class="contact-card">
-                    <div class="icon-box">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg" alt="Twitter">
-                    </div>
-                    <div class="contact-info">
-                        <span class="contact-label">Twitter</span>
-                        <span class="contact-value">@pintuyadav</span>
-                    </div>
+                <a href="https://twitter.com/pintuyadav5468" target="_blank" class="contact-logo-link"
+                    aria-label="Twitter">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"
+                        alt="Twitter">
                 </a>
-
-                <a href="mailto:pintuyadav13624@gmail.com" class="contact-card">
-                    <div class="icon-box">
-                        <img src="https://img.icons8.com/ios-filled/50/000000/email.png" alt="Email">
-                    </div>
-                    <div class="contact-info">
-                        <span class="contact-label">Email</span>
-                        <span class="contact-value">Send a Mail</span>
-                    </div>
+                <a href="mailto:pintuyadav13624@gmail.com" class="contact-logo-link" aria-label="Email">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/email.png" alt="Email">
                 </a>
-
             </div>
         </section>
 
         <footer>
-            © 2025 Pintu Yadav · Built with ❤️ & Code
+            <p>© 2025 Pintu · Built with ❤️ & Code</p>
         </footer>
 
     </div>
 
     <script>
+        // Theme Toggle
         const themeBtn = document.getElementById('theme-btn');
-        const htmlElement = document.documentElement;
+        const html = document.documentElement;
 
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        htmlElement.setAttribute('data-theme', savedTheme);
-        updateIcon(savedTheme);
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
         themeBtn.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            htmlElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateIcon(newTheme);
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
         });
 
-        function updateIcon(theme) {
-            themeBtn.textContent = theme === 'dark' ? '☀' : '🌙';
-        }
+        // Scroll Reveal
+        const reveals = document.querySelectorAll('.reveal');
+
+        const checkReveal = () => {
+            const triggerBottom = window.innerHeight * 0.85;
+            reveals.forEach(el => {
+                const boxTop = el.getBoundingClientRect().top;
+                if (boxTop < triggerBottom) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', checkReveal);
+        checkReveal();
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 
 </html>
-
-
-
 
